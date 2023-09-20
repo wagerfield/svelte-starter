@@ -1,0 +1,7 @@
+{
+  "editor.formatOnSave": false,
+  "eslint.validate": ["javascript", "typescript", "svelte"],
+  "tailwindCSS.experimental.classRegex": [
+    ["onno|clsx\\(([^)]*)\\)", "[\"'`]([^\"'`]*)[\"'`]"]
+  ]
+}
