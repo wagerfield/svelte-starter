@@ -35,7 +35,8 @@
   },
   "lint-staged": {
     "**/*.{svelte,ts}": [
-      "prettier --plugin prettier-plugin-svelte --write",
+      "prettier --write",
+      "eslint --fix",
       "vitest related --run"
     ],
     "**/*.{json,md}": [
