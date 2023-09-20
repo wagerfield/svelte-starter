@@ -6,18 +6,18 @@ This project uses [Bun][bun] for managing dependencies:
 
 Run development server:
 
-    bun dev
+    bun run dev
 
 Build for production:
 
-    bun build
+    bun run build
 
 Run production build:
 
-    bun start
+    bun run start
 
 Run unit and E2E tests:
 
-    bun test
+    bun run test
 
 [bun]: https://bun.sh
