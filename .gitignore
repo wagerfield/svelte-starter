@@ -1,0 +1,14 @@
+/node_modules
+/coverage
+/package
+/reports
+/build
+
+/.svelte
+/.vercel
+
+.DS_Store
+.log*
+.env*
+
+!.env.example
