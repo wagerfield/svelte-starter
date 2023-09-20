@@ -1,0 +1,74 @@
+{
+  "private": true,
+  "version": "0.0.1",
+  "name": "svelte-starter",
+  "type": "module",
+  "author": {
+    "name": "Matthew Wagerfield",
+    "email": "matthew.wagerfield@letsmake.com"
+  },
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "start": "vite preview",
+    "sync": "svelte-kit sync",
+    "clean": "rm -rf coverage",
+    "check": "svelte-kit sync && svelte-check",
+    "prepare": "husky install && svelte-kit sync",
+    "format": "prettier --plugin prettier-plugin-svelte --write .",
+    "lint": "prettier --plugin prettier-plugin-svelte --check . && eslint .",
+    "test": "bun test:unit && bun test:e2e",
+    "test:coverage": "vitest --coverage",
+    "test:e2e": "playwright test",
+    "test:unit": "vitest --run"
+  },
+  "prettier": {
+    "semi": false,
+    "plugins": [
+      "prettier-plugin-svelte"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "**/*.{svelte,ts}": [
+      "prettier --plugin prettier-plugin-svelte --write",
+      "vitest related --run"
+    ],
+    "**/*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "17.7.1",
+    "@commitlint/config-conventional": "17.7.0",
+    "@fontsource-variable/inter": "5.0.8",
+    "@fontsource-variable/jetbrains-mono": "5.0.13",
+    "@playwright/test": "1.38.0",
+    "@sveltejs/adapter-vercel": "3.0.3",
+    "@sveltejs/kit": "1.25.0",
+    "@typescript-eslint/eslint-plugin": "6.7.2",
+    "@typescript-eslint/parser": "6.7.2",
+    "@vitest/coverage-v8": "0.34.4",
+    "autoprefixer": "10.4.15",
+    "eslint": "8.49.0",
+    "eslint-config-prettier": "9.0.0",
+    "eslint-plugin-svelte": "2.33.2",
+    "husky": "8.0.3",
+    "lint-staged": "14.0.1",
+    "onno": "2.2.0",
+    "postcss": "8.4.30",
+    "prettier": "3.0.3",
+    "prettier-plugin-svelte": "3.0.3",
+    "svelte": "4.2.1",
+    "svelte-check": "3.5.2",
+    "tailwindcss": "3.3.3",
+    "tslib": "2.6.2",
+    "typescript": "5.2.2",
+    "vite": "4.4.9",
+    "vitest": "0.34.3"
+  }
+}
