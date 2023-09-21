@@ -7,6 +7,11 @@
   import Head from "$components/Head.svelte"
   import Header from "$components/Header.svelte"
   import Footer from "$components/Footer.svelte"
+  import { onMount } from "svelte"
+
+  onMount(() => {
+    document.documentElement.removeAttribute("data-preload")
+  })
 </script>
 
 <Head />
