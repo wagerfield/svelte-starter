@@ -2,4 +2,4 @@
   import Heading from "$components/Heading.svelte"
 </script>
 
-<Heading>Make something wonderful.</Heading>
+<Heading>What more do you need to know?</Heading>
