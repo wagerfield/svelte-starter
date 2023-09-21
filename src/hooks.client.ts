@@ -1,3 +1,7 @@
-import { sequence } from "@sveltejs/kit/hooks"
+import type { HandleClientError } from "@sveltejs/kit"
 
-export const handle = sequence()
+export const handleError: HandleClientError = async (context) => {
+  console.log("handleError:", context)
+
+  return { message: "Something went wrong" }
+}

@@ -9,5 +9,11 @@ export default {
       sans: ["Inter Variable", ...fontFamily.sans],
       mono: ["JetBrains Mono Variable", ...fontFamily.mono],
     },
+    extend: {
+      colors: {
+        fg: "rgb(var(--color-fg) / <alpha-value>)",
+        bg: "rgb(var(--color-bg) / <alpha-value>)",
+      },
+    },
   },
 }

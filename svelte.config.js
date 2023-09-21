@@ -13,9 +13,8 @@ export default {
     outDir: ".svelte",
     adapter: vercelAdapter({ runtime: "edge" }),
     alias: {
-      $components: "./src/components",
-      $stores: "./src/stores",
-      $hooks: "./src/hooks",
+      $components: "src/components",
+      $stores: "src/stores",
     },
   },
 }

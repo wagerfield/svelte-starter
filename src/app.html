@@ -1,12 +1,15 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme>
   <head>
     <meta charset="utf-8" />
     <link rel="manifest" href="%sveltekit.assets%/manifest.json" />
     <link rel="icon" href="%sveltekit.assets%/favicon.svg" />
     %sveltekit.head%
   </head>
-  <body class="font-mono" data-sveltekit-preload-data="hover">
+  <body
+    data-sveltekit-preload-data="hover"
+    class="font-mono bg-bg text-fg transition-colors duration-500"
+  >
     <div class="contents">%sveltekit.body%</div>
   </body>
 </html>

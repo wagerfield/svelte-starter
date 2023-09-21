@@ -1,5 +1,5 @@
 import { sequence } from "@sveltejs/kit/hooks"
-import { pingServerHook } from "./hooks/ping.server.hook"
-import { themeServerHook } from "./hooks/theme.server.hook"
+import { helloHook } from "./hooks/hello.hook"
+import { themeHook } from "./hooks/theme.hook"
 
-export const handle = sequence(pingServerHook, themeServerHook)
+export const handle = sequence(helloHook, themeHook)
