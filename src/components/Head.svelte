@@ -1,7 +1,7 @@
 <script lang="ts">
   export let title = "Svelte Starter"
-  export let description = "Starter project for Svelte apps"
-  export let url = "https://letsmake.com"
+  export let description = "Svelte starter project"
+  export let url = "https://svelte-starter-project.vercel.app"
 
   export let statusBarStyle = "black-translucent"
   export let viewport = "width=device-width"
