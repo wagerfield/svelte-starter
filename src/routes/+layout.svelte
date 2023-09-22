@@ -4,13 +4,14 @@
   import "@fontsource-variable/inter"
   import "@fontsource-variable/jetbrains-mono"
 
+  import { onMount } from "svelte"
+
   import Head from "$components/Head.svelte"
   import Header from "$components/Header.svelte"
   import Footer from "$components/Footer.svelte"
-  import { onMount } from "svelte"
 
   onMount(() => {
-    document.documentElement.removeAttribute("data-preload")
+    document.documentElement.removeAttribute("data-ssr")
   })
 </script>
 

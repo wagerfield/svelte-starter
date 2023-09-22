@@ -1,10 +1,6 @@
-export enum Theme {
-  System = "system",
-  Light = "light",
-  Dark = "dark",
-}
+export const THEMES = ["system", "light", "dark"] as const
 
-export const THEMES = Object.values(Theme)
+export type Theme = (typeof THEMES)[number]
 
 export const isTheme = (value: unknown): value is Theme => {
   return THEMES.includes(value as Theme)

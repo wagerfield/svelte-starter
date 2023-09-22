@@ -27,7 +27,7 @@
 }
 
 @layer utilities {
-  [data-preload] * {
+  [data-ssr] * {
     transition: none !important;
   }
 }
