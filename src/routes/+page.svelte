@@ -3,5 +3,4 @@
 </script>
 
 <Heading>Make something wonderful.</Heading>
-
-<button class="btn btn-primary">Testing Daisy UI</button>
+<a href="/jedi" class="btn btn-primary">Take me somewhere</a>

@@ -6,7 +6,7 @@
   <nav class="flex space-x-2">
     <a href="/">Home</a>
     <span class="text-gray-300">/</span>
-    <a href="/about">About</a>
+    <a href="/jedi">Jedi</a>
   </nav>
   <span><Clock /></span>
 </header>
