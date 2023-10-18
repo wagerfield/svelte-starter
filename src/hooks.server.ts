@@ -1,5 +1,5 @@
 import { sequence } from "@sveltejs/kit/hooks"
-import { helloHook } from "./hooks/hello.hook"
 import { themeHook } from "./hooks/theme.hook"
+import { supabaseHook } from "./hooks/supabase.hook"
 
-export const handle = sequence(helloHook, themeHook)
+export const handle = sequence(supabaseHook, themeHook)

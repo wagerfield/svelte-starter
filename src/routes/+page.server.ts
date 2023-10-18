@@ -2,6 +2,14 @@ import { redirect } from "@sveltejs/kit"
 import { isString } from "$lib/utils"
 import { isTheme } from "$lib/theme"
 
+export const load = async ({ url, locals }) => {
+  const session = await locals.getSession()
+
+  if (session) throw redirect(303, "/account")
+
+  return { url: url.origin }
+}
+
 export const actions = {
   setTheme: async ({ cookies, request }) => {
     const formData = await request.formData()
