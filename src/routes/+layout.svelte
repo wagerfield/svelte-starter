@@ -3,7 +3,7 @@
 
   import { onMount } from "svelte"
   import { invalidate } from "$app/navigation"
-  import { PUBLIC_SUPABASE_ID_TOKEN } from "$env/static/public"
+  import { PUBLIC_SUPABASE_AUTH_TOKEN } from "$env/static/public"
 
   import "@fontsource-variable/inter"
   import "@fontsource-variable/jetbrains-mono"
@@ -17,7 +17,7 @@
   onMount(() => {
     const result = data.supabase.auth.onAuthStateChange((event, session) => {
       if (session?.expires_at !== data.session?.expires_at) {
-        invalidate(PUBLIC_SUPABASE_ID_TOKEN)
+        invalidate(PUBLIC_SUPABASE_AUTH_TOKEN)
       }
     })
 
@@ -29,7 +29,7 @@
 
 <div class="min-h-screen flex flex-col">
   <Header />
-  <main class="grow flex flex-col items-center justify-center p-4 space-y-12">
+  <main class="grow p-4 flex items-center justify-center">
     <slot />
   </main>
   <Footer />
