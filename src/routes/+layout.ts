@@ -1,16 +1,16 @@
 import { createSupabaseLoadClient } from "@supabase/auth-helpers-sveltekit"
 import {
-  PUBLIC_SUPABASE_ANON_KEY,
-  PUBLIC_SUPABASE_BASE_URL,
-  PUBLIC_SUPABASE_ID_TOKEN,
+  PUBLIC_SUPABASE_KEY,
+  PUBLIC_SUPABASE_URL,
+  PUBLIC_SUPABASE_AUTH_TOKEN,
 } from "$env/static/public"
 
 export const load = async ({ fetch, data, depends }) => {
-  depends(PUBLIC_SUPABASE_ID_TOKEN)
+  depends(PUBLIC_SUPABASE_AUTH_TOKEN)
 
-  const supabase = createSupabaseLoadClient({
-    supabaseUrl: PUBLIC_SUPABASE_BASE_URL,
-    supabaseKey: PUBLIC_SUPABASE_ANON_KEY,
+  const supabase = createSupabaseLoadClient<Database>({
+    supabaseUrl: PUBLIC_SUPABASE_URL,
+    supabaseKey: PUBLIC_SUPABASE_KEY,
     serverSession: data.session,
     event: { fetch },
   })
