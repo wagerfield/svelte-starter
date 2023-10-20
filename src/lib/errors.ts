@@ -1,0 +1,4 @@
+export enum ErrorCode {
+  INVALID_FORM_DATA = "INVALID_FORM_DATA",
+  USER_NOT_FOUND = "USER_NOT_FOUND",
+}
