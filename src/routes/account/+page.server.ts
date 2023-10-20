@@ -1,17 +1,27 @@
+import { superValidate } from "sveltekit-superforms/server"
 import { fail, redirect } from "@sveltejs/kit"
+import { z } from "zod"
+
+const schema = z.object({
+  firstName: z.string().min(1),
+  lastName: z.string().min(1),
+  username: z.string().min(3),
+})
 
 export const load = async ({ locals: { supabase, getSession } }) => {
   const session = await getSession()
 
   if (!session) throw redirect(303, "/")
 
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select(`username, full_name, website, avatar_url`)
+  const { data } = await supabase
+    .from("user_profiles")
+    .select(`username, first_name, last_name, avatar_url`)
     .eq("id", session.user.id)
     .single()
 
-  return { session, profile }
+  const form = await superValidate(data, schema)
+
+  return { session, form }
 }
 
 export const actions = {
