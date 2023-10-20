@@ -1,13 +1,25 @@
 import { SupabaseClient, Session } from "@supabase/supabase-js"
+import type { Database as DB } from "./types/database.types"
 
-// https://kit.svelte.dev/docs/types#app
 declare global {
+  type Database = DB
+
+  export type DatabaseFunctions<T extends keyof DB["public"]["Functions"]> =
+    DB["public"]["Functions"][T]
+
+  export type DatabaseTables<T extends keyof DB["public"]["Tables"]> =
+    DB["public"]["Tables"][T]["Row"]
+
+  export type DatabaseEnums<T extends keyof DB["public"]["Enums"]> =
+    DB["public"]["Enums"][T]
+
+  // https://kit.svelte.dev/docs/types#app
   namespace App {
     interface Error {
       message: string
     }
     interface Locals {
-      supabase: SupabaseClient
+      supabase: SupabaseClient<DB>
       getSession(): Promise<Session | null>
     }
     interface PageData {
