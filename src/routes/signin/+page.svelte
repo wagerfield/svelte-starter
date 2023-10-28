@@ -1,45 +1,32 @@
 <script lang="ts">
-  import SuperDebug from "sveltekit-superforms/client/SuperDebug.svelte"
-  import { superForm } from "sveltekit-superforms/client"
+  import { Form } from "formsnap"
+  import { signInSchema } from "./schemas"
+
+  import FormMessage from "$components/FormMessage.svelte"
+  import SubmitButton from "$components/SubmitButton.svelte"
 
   export let data
-
-  const { form, errors, constraints, submitting, message } = superForm(
-    data.form,
-  )
-
-  $: console.log($message)
 </script>
 
 <div class="space-y-8 w-80">
-  <form method="POST" class="space-y-2">
-    <input
-      type="email"
-      name="email"
-      placeholder="Email address"
-      aria-invalid={$errors.email ? "true" : undefined}
-      bind:value={$form.email}
-      {...$constraints.email}
-    />
-    {#if $errors.email}
-      <span class="text-red-500">{$errors.email}</span>
-    {/if}
-    <button
-      class="btn btn-primary w-full disabled:opacity-50"
-      disabled={$submitting}>Sign In</button
-    >
-  </form>
-  <p class="text-center">
-    No account? <a href="/signup">Sign up</a>
+  <h2>Sign In</h2>
+  <p>
+    Don't have an account? <a class="text-primary" href="/signup">Sign up</a>
   </p>
-  <SuperDebug data={$form} />
+  <Form.Root
+    form={data.form}
+    schema={signInSchema}
+    class="space-y-4"
+    let:config
+  >
+    <Form.Field {config} name="email">
+      <div>
+        <Form.Label>Email</Form.Label>
+        <Form.Input placeholder="name@example.com" />
+        <Form.Validation />
+      </div>
+    </Form.Field>
+    <FormMessage />
+    <SubmitButton>Sign In</SubmitButton>
+  </Form.Root>
 </div>
-
-<style lang="postcss">
-  input {
-    @apply block w-full px-2 py-1 border rounded;
-  }
-  a {
-    @apply text-primary;
-  }
-</style>
