@@ -5,7 +5,7 @@ import { isTheme } from "$lib/theme"
 export const load = async ({ url, locals }) => {
   const session = await locals.getSession()
 
-  if (session) throw redirect(303, "/account")
+  if (session) throw redirect(303, "/dashboard")
 
   return { url: url.origin }
 }
@@ -21,5 +21,9 @@ export const actions = {
     }
 
     throw redirect(303, isString(url) ? url : "/")
+  },
+  signOut: async ({ locals: { supabase, getSession } }) => {
+    const session = await getSession()
+    if (session) await supabase.auth.signOut()
   },
 }
