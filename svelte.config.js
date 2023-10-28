@@ -6,7 +6,10 @@ import vercelAdapter from "@sveltejs/adapter-vercel"
 export default {
   preprocess: vitePreprocess(),
   vitePlugin: {
-    inspector: true,
+    inspector: {
+      showToggleButton: false,
+      toggleKeyCombo: "control-shift",
+    },
   },
   kit: {
     appDir: "app",
@@ -14,6 +17,7 @@ export default {
     adapter: vercelAdapter({ runtime: "edge" }),
     alias: {
       $components: "src/components",
+      $schemas: "src/schemas",
       $stores: "src/stores",
     },
   },
