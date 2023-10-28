@@ -1,31 +1,26 @@
 import { message, superValidate } from "sveltekit-superforms/server"
+import { StatusCode } from "status-code-enum"
 import { redirect } from "@sveltejs/kit"
-import { z } from "zod"
-import { ErrorCode } from "$lib/errors.js"
-
-const schema = z.object({
-  email: z.string().email(),
-})
+import { ErrorCode } from "$lib/errors"
+import { signInSchema } from "./schemas"
 
 export const load = async ({ locals: { getSession } }) => {
   const session = await getSession()
 
   if (session) throw redirect(303, "/")
 
-  const form = await superValidate(schema)
-
-  return { form }
+  return { form: await superValidate(signInSchema) }
 }
 
 export const actions = {
   default: async ({ url, request, locals: { supabase } }) => {
-    const form = await superValidate(request, schema)
+    const form = await superValidate(request, signInSchema)
+
+    console.log(url)
 
     if (!form.valid) {
-      return message(form, ErrorCode.INVALID_FORM_DATA)
+      return message(form, ErrorCode.InvalidFormData)
     }
-
-    console.log(url.origin, url)
 
     const { error } = await supabase.auth.signInWithOtp({
       email: form.data.email,
@@ -36,9 +31,16 @@ export const actions = {
     })
 
     if (error) {
-      return message(form, ErrorCode.USER_NOT_FOUND)
+      console.log({
+        name: error.name,
+        message: error.message,
+      })
+
+      return message(form, ErrorCode.Authentication, {
+        status: StatusCode.ClientErrorUnauthorized,
+      })
     }
 
-    return message(form, "OK")
+    throw redirect(303, "/auth/email")
   },
 }
