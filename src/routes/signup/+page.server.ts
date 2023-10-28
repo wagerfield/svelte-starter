@@ -1,52 +1,47 @@
-import { superValidate } from "sveltekit-superforms/server"
-import { fail, redirect } from "@sveltejs/kit"
-import { z } from "zod"
-
-const schema = z.object({
-  email: z.string().email(),
-  firstName: z.string().min(1),
-  lastName: z.string().min(1),
-  username: z.string().min(3),
-})
+import { message, superValidate } from "sveltekit-superforms/server"
+import { StatusCode } from "status-code-enum"
+import { redirect } from "@sveltejs/kit"
+import { ErrorCode } from "$lib/errors"
+import { signUpSchema } from "./schemas"
 
 export const load = async ({ locals: { getSession } }) => {
   const session = await getSession()
 
   if (session) throw redirect(303, "/")
 
-  const form = await superValidate(schema)
-
-  return { form }
+  return { form: await superValidate(signUpSchema) }
 }
 
 export const actions = {
   default: async ({ url, request, locals: { supabase } }) => {
-    const form = await superValidate(request, schema)
+    const form = await superValidate(request, signUpSchema)
 
-    if (!form.valid) return fail(400, { form })
+    if (!form.valid) {
+      return message(form, ErrorCode.InvalidFormData)
+    }
 
-    const { data, error } = await supabase.auth.signInWithOtp({
+    const { error } = await supabase.auth.signInWithOtp({
       email: form.data.email,
       options: {
         emailRedirectTo: `${url.origin}/auth/callback`,
         shouldCreateUser: true,
         data: {
-          first_name: form.data.firstName,
-          last_name: form.data.lastName,
-          username: form.data.username,
+          name: form.data.name,
         },
       },
     })
 
-    console.log({ data, error })
-
     if (error) {
-      return fail(error.status ?? 400, {
+      console.log({
+        name: error.name,
         message: error.message,
-        cause: error.cause,
+      })
+
+      return message(form, error.message, {
+        status: StatusCode.ClientErrorBadRequest,
       })
     }
 
-    return { form }
+    throw redirect(303, "/auth/email")
   },
 }
