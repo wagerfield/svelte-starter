@@ -1,6 +1,8 @@
 <script lang="ts">
   import { page } from "$app/stores"
+
   import Clock from "./Clock.svelte"
+  import SignOutButton from "./SignOutButton.svelte"
 </script>
 
 <header class="shrink-0 flex justify-between px-4 py-3">
@@ -10,7 +12,7 @@
   <span><Clock /></span>
   <nav class="flex space-x-2">
     {#if $page.data.session}
-      <a href="/signout">Sign out</a>
+      <SignOutButton />
     {:else}
       <a href="/signup">Sign up</a>
       <span class="text-gray-300">/</span>
