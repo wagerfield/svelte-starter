@@ -17,6 +17,8 @@ export const identity = <T>(x: T): T => x
 
 export const join = (x: string) => (a: any, b: any) => `${a}${x}${b}`
 
+export const wait = (ms: number) => new Promise((r) => setTimeout(r, ms))
+
 // Guards
 
 export const isNil = (x: unknown): x is Nil => x === null || x === undefined
