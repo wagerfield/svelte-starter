@@ -1,6 +1,6 @@
 import { Config } from "tailwindcss"
 import { fontFamily } from "tailwindcss/defaultTheme"
-import { getBodyFont, getHeroFont, getMonoFont } from "./tailwind.utils"
+import { getBodyFont, getHeroFont, getMonoFont, rem } from "./tailwind.utils"
 import { createTheme } from "./tailwind.theme"
 
 export default {
@@ -33,6 +33,12 @@ export default {
       "hero-6": getHeroFont(60),
       "hero-7": getHeroFont(72, 1.05),
       "hero-8": getHeroFont(96, 1.05),
+    },
+    extend: {
+      borderRadius: {
+        xs: rem(2),
+        sm: rem(4),
+      },
     },
   },
   // https://daisyui.com/docs/config
