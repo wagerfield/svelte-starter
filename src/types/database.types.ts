@@ -11,31 +11,22 @@ export interface Database {
     Tables: {
       user_profiles: {
         Row: {
-          avatar_url: string | null
           created_at: string
-          first_name: string
           id: string
-          last_name: string
+          name: string
           updated_at: string
-          username: string
         }
         Insert: {
-          avatar_url?: string | null
           created_at?: string
-          first_name: string
           id: string
-          last_name: string
+          name: string
           updated_at?: string
-          username: string
         }
         Update: {
-          avatar_url?: string | null
           created_at?: string
-          first_name?: string
           id?: string
-          last_name?: string
+          name?: string
           updated_at?: string
-          username?: string
         }
         Relationships: [
           {
