@@ -6,7 +6,7 @@
 
   onMount(() => {
     const result = data.supabase.auth.onAuthStateChange((event, session) => {
-      if (session) goto("/dashboard")
+      if (session) goto("/dashboard", { replaceState: true })
     })
 
     return () => result.data.subscription.unsubscribe()
