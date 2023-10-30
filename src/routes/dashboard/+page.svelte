@@ -1,31 +1,9 @@
 <script lang="ts">
   import { Form } from "formsnap"
-  import { onMount } from "svelte"
   import { userSchema } from "./schemas"
-
-  import FormMessage from "$components/FormMessage.svelte"
-  import SubmitButton from "$components/SubmitButton.svelte"
+  import { FormMessage, SubmitButton, SupabaseBinding } from "$components/form"
 
   export let data
-
-  onMount(() => {
-    const channel = data.supabase
-      .channel("dashboard")
-      .on(
-        "postgres_changes",
-        {
-          schema: "public",
-          table: "user_profiles",
-          event: "UPDATE",
-        },
-        (payload) => {
-          console.log(payload)
-        },
-      )
-      .subscribe()
-
-    return () => channel.unsubscribe()
-  })
 </script>
 
 <div class="space-y-8 w-80">
@@ -36,6 +14,7 @@
         <Form.Label {...attrs.label}>Name</Form.Label>
         <Form.Input {...attrs.input} placeholder="First Last" />
         <Form.Validation {...attrs.validation} />
+        <SupabaseBinding />
       </div>
     </Form.Field>
     <Form.Field {config} name="email" let:attrs>

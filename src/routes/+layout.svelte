@@ -4,6 +4,7 @@
   import { onMount } from "svelte"
   import { invalidate } from "$app/navigation"
   import { PUBLIC_SUPABASE_AUTH_TOKEN } from "$env/static/public"
+  import { setSupabase } from "$lib/supabase"
 
   import "@fontsource-variable/inter"
   import "@fontsource-variable/jetbrains-mono"
@@ -13,6 +14,8 @@
   import Footer from "$components/Footer.svelte"
 
   export let data
+
+  setSupabase(data.supabase)
 
   onMount(() => {
     const result = data.supabase.auth.onAuthStateChange((event, session) => {

@@ -1,9 +1,7 @@
 <script lang="ts">
   import { Form } from "formsnap"
   import { signUpSchema } from "./schemas"
-
-  import SubmitButton from "$components/SubmitButton.svelte"
-  import FormMessage from "$components/FormMessage.svelte"
+  import { FormMessage, SubmitButton } from "$components/form"
 
   export let data
 </script>
