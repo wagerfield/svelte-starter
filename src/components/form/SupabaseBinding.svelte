@@ -3,23 +3,26 @@
   import { getFormField } from "formsnap"
   import { getSupabase } from "$lib/supabase"
 
-  const { name, setValue } = getFormField()
+  const { setValue } = getFormField()
 
   const supabase = getSupabase()
 
   if (!supabase) throw new Error("Supabase client undefined")
 
-  export let column = name
+  export let table: keyof Database["public"]["Tables"]
+  export let filter: string | undefined = undefined
+  export let column: string
 
   onMount(() => {
     const channel = supabase
-      .channel("user_profiles")
+      .channel("database_changes")
       .on(
         "postgres_changes",
         {
           schema: "public",
-          table: "user_profiles",
           event: "UPDATE",
+          table,
+          filter,
         },
         (payload) => {
           const value = payload.new[column]
