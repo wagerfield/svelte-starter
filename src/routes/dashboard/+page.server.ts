@@ -18,8 +18,6 @@ export const load = async ({ locals: { supabase, getSession } }) => {
   const user = { ...data, email: session.user.email }
   const form = await superValidate(user, userSchema)
 
-  console.log({ user, form })
-
   return { form, session }
 }
 
