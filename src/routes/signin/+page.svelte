@@ -19,11 +19,11 @@
     class="space-y-4"
     let:config
   >
-    <Form.Field {config} name="email">
+    <Form.Field {config} name="email" let:attrs>
       <div>
-        <Form.Label>Email</Form.Label>
-        <Form.Input placeholder="name@example.com" />
-        <Form.Validation />
+        <Form.Label {...attrs.label}>Email</Form.Label>
+        <Form.Input {...attrs.input} placeholder="name@example.com" />
+        <Form.Validation {...attrs.validation} />
       </div>
     </Form.Field>
     <FormMessage />
