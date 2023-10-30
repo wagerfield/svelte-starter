@@ -19,18 +19,18 @@
     class="space-y-4"
     let:config
   >
-    <Form.Field {config} name="name">
+    <Form.Field {config} name="name" let:attrs>
       <div>
-        <Form.Label>Name</Form.Label>
-        <Form.Input placeholder="First Last" />
-        <Form.Validation />
+        <Form.Label {...attrs.label}>Name</Form.Label>
+        <Form.Input {...attrs.input} placeholder="First Last" />
+        <Form.Validation {...attrs.validation} />
       </div>
     </Form.Field>
-    <Form.Field {config} name="email">
+    <Form.Field {config} name="email" let:attrs>
       <div>
-        <Form.Label>Email</Form.Label>
-        <Form.Input placeholder="name@example.com" />
-        <Form.Validation />
+        <Form.Label {...attrs.label}>Email</Form.Label>
+        <Form.Input {...attrs.input} placeholder="name@example.com" />
+        <Form.Validation {...attrs.validation} />
       </div>
     </Form.Field>
     <FormMessage />
