@@ -5,13 +5,13 @@ declare global {
   type Database = DB
   type Supabase = SupabaseClient<DB>
 
-  export type DatabaseFunctions<T extends keyof DB["public"]["Functions"]> =
+  type DatabaseFunctions<T extends keyof DB["public"]["Functions"]> =
     DB["public"]["Functions"][T]
 
-  export type DatabaseTables<T extends keyof DB["public"]["Tables"]> =
+  type DatabaseTables<T extends keyof DB["public"]["Tables"]> =
     DB["public"]["Tables"][T]["Row"]
 
-  export type DatabaseEnums<T extends keyof DB["public"]["Enums"]> =
+  type DatabaseEnums<T extends keyof DB["public"]["Enums"]> =
     DB["public"]["Enums"][T]
 
   // https://kit.svelte.dev/docs/types#app
