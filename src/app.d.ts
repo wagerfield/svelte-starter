@@ -3,6 +3,7 @@ import type { Database as DB } from "./types/database.types"
 
 declare global {
   type Database = DB
+  type Supabase = SupabaseClient<DB>
 
   export type DatabaseFunctions<T extends keyof DB["public"]["Functions"]> =
     DB["public"]["Functions"][T]
@@ -19,10 +20,11 @@ declare global {
       message: string
     }
     interface Locals {
-      supabase: SupabaseClient<DB>
+      supabase: Supabase
       getSession(): Promise<Session | null>
     }
     interface PageData {
+      supabase: Supabase
       session: Session | null
       theme: string
     }
