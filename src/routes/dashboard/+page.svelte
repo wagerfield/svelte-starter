@@ -5,8 +5,8 @@
 
   export let data
 
-  $: userId = data.session.user.id
-  $: filter = `id=eq.${userId}`
+  const userId = data.session.user.id
+  const filter = `id=eq.${userId}`
 </script>
 
 <div class="space-y-8 w-80">
@@ -17,7 +17,7 @@
         <Form.Label {...attrs.label}>Name</Form.Label>
         <Form.Input {...attrs.input} placeholder="First Last" />
         <Form.Validation {...attrs.validation} />
-        <SupabaseBinding table="user_profiles" column="name" {filter} />
+        <SupabaseBinding table="user_profiles" {filter} />
       </div>
     </Form.Field>
     <Form.Field {config} name="email" let:attrs>
